@@ -1,0 +1,38 @@
+.table-container {
+  position: relative;
+  min-height: 200px;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.mat-header-cell {
+  text-align: center;
+  font-size: large;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+.btn-favorite :hover{
+  font-size: 25px;
+}
+
+.negativo{
+  color: cadetblue;
+}

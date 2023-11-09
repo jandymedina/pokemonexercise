@@ -1,0 +1,7 @@
+<mat-card>
+    <mat-card-title>Pokemon favorito: {{ pokemon?.name }}</mat-card-title>
+    <button mat-stroked-button color="primary"
+            (click)="openDialog()"
+            [disabled]="!pokemon?.favorite">Detalles favorito
+    </button>
+</mat-card>
