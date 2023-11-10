@@ -13,7 +13,7 @@ import {PokemonsSelectors} from '../../state';
 export class PokemonDetailComponent implements OnInit {
   pokemon: Pokemon;
   constructor(private pokemonService: PokemonService) {
-    this.pokemon = this.pokemonService.newPokemon();
+    this.pokemon = this.pokemonService.newPokemon({});
   }
   ngOnInit(): void {
     this.pokemonService.selectPokemonDetailsAdvice.subscribe(pokemon=>{

@@ -2,31 +2,22 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {Pokemon} from "../../models/pokemon.model";
-import { PokemonsSelectors} from '../../state';
+import {PokemonsSelectors} from '../../state';
 import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
-  selector: 'app-resume',
-  templateUrl: './resume.component.html',
-  styleUrls: ['./resume.component.css']
+    selector: 'app-resume',
+    templateUrl: './resume.component.html',
+    styleUrls: ['./resume.component.css']
 })
 export class ResumeComponent implements OnInit {
-  pokemons$: Observable<Pokemon[]> = this.store.select(PokemonsSelectors.getPokemons);
+    pokemons$: Observable<Pokemon[]> = this.store.select(PokemonsSelectors.getPokemons);
 
-  displayedColumns: string[] = ['name', 'cantidad'];
-  //dataSource!: MatTableDataSource<Pokemon>;
+    displayedColumns: string[] = ['name', 'cantidad'];
+    constructor(private store: Store) {
+    }
 
-  constructor(private store: Store) {
-  }
+    ngOnInit(): void {
 
-  ngOnInit(): void {
-
-  }
-
-  listenPokemonsState() {
-    this.pokemons$.subscribe((pokemons) => {
-      //this.dataSource = new MatTableDataSource<Pokemon>(pokemons);
-    });
-  }
-
+    }
 }

@@ -18,6 +18,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { StartCharCounterPipe } from './pipes/start-char-counter.pipe';
 import { ResumeComponent } from './components/resume/resume.component';
+import { CapitalLetterPipe } from './pipes/capital-letter.pipe';
 
 
 
@@ -31,6 +32,7 @@ import { ResumeComponent } from './components/resume/resume.component';
     PokemonsComponent,
     MainComponent,
     StartCharCounterPipe,
+    CapitalLetterPipe,
     ResumeComponent
   ],
   imports: [

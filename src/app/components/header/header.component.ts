@@ -11,8 +11,7 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog
 })
 export class HeaderComponent implements OnInit {
     pokemon$: BehaviorSubject<Pokemon>;
-    pokemon?: Pokemon;
-
+    pokemon!: Pokemon;
     constructor(
         private pokemonService: PokemonService,
         private dialog: MatDialog
@@ -28,7 +27,7 @@ export class HeaderComponent implements OnInit {
 
     openDialog() {
         this.dialog.open(PokemonDialogComponent, {
-            width: '450px',
+            width: '370px',
             data: this.pokemon
         });
     }

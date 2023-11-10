@@ -1,8 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Pokemon} from "../../models/pokemon.model";
-import {Store} from "@ngrx/store";
-import {Observable} from "rxjs";
-import {PokemonsSelectors} from '../../state';
 
 
 @Component({
@@ -18,5 +15,4 @@ export class PokemonComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

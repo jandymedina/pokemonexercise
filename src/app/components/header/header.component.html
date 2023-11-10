@@ -1,7 +1,11 @@
-<mat-card>
-    <mat-card-title>Pokemon favorito: {{ pokemon?.name }}</mat-card-title>
-    <button mat-stroked-button color="primary"
-            (click)="openDialog()"
-            [disabled]="!pokemon?.favorite">Detalles favorito
-    </button>
-</mat-card>
+<p>
+    <mat-toolbar class="bg-{{(pokemon && pokemon!.types.length) ? pokemon!.types[0].type.name : 'unknown'}}">
+        <span *ngIf="!pokemon">POKEMON</span>
+        <ng-container *ngIf="pokemon">
+            <span style="padding-left: 10px; padding-right: 10px">
+               EL FAVORITO ES {{pokemon.name | uppercase}}
+            </span>
+            <img (click)="openDialog()" style="cursor: pointer" src="{{pokemon!.sprites!.front_default}}" alt="Pokemon favorito"/>
+        </ng-container>
+    </mat-toolbar>
+</p>

@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {async, Observable} from "rxjs";
+import {Observable} from "rxjs";
+import {map, startWith, debounceTime} from "rxjs/operators";
 
 //import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
@@ -29,13 +30,15 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class PokemonsComponent implements OnInit {
     pokemons$: Observable<Pokemon[]> = this.store.select(PokemonsSelectors.getPokemons);
+    pokemons: Pokemon[] = [];
     pokemonFavorite$: Observable<Pokemon> = this.store.select(PokemonsSelectors.getPokemonFavorite);
     /* FormGoup
     public formFilter!: FormGroup;
     */
     //FormControl
-    filterFormControl: FormControl = new FormControl;
+    filterFormControl = new FormControl;
     matcher = new MyErrorStateMatcher();
+    filterPokemons!: Observable<string[]>;
 
     displayedColumns: string[] = ['name', 'favorite'];
     dataSource!: MatTableDataSource<Pokemon>;
@@ -45,8 +48,7 @@ export class PokemonsComponent implements OnInit {
 
     constructor(
         private pokemonService: PokemonService,
-        private store: Store,
-        //private formBuilder: FormBuilder
+        private store: Store
     ) {
 
     }
@@ -54,23 +56,11 @@ export class PokemonsComponent implements OnInit {
     ngOnInit(): void {
         this.getPokemonData(environment.urlPokemonsApi);
         this.listenPokemonsState();
-        //this.formGroupControl();
         this.formControl();
+        this.initFilter();
     }
 
-    public formControl() {
-        this.filterFormControl = new FormControl(
-            '', [Validators.minLength(2)]
-        );
-    }
-
-    /*public formGroupControl() {
-      this.formFilter = this.formBuilder.group({
-        filtro: ['', [Validators.minLength(2)]]
-      })
-    }*/
-
-    public getPokemonData(url: string) {
+    private getPokemonData(url: string) {
         this.pokemonService.getPokemons(url).subscribe((data) => {
             const pokemonsData = JSON.parse(JSON.stringify(data));
             this.store.dispatch(PokemonsListActions.setPokemonsData({pokemons: pokemonsData.results}));
@@ -80,21 +70,36 @@ export class PokemonsComponent implements OnInit {
         });
     }
 
-    listenPokemonsState() {
+    private listenPokemonsState() {
         this.pokemons$.subscribe((pokemons) => {
             this.dataSource = new MatTableDataSource<Pokemon>(pokemons);
             this.dataSource.paginator = this.paginator;
+            this.pokemons = pokemons;
         });
 
         this.pokemonFavorite$.subscribe((pokemon) => {
             this.pokemonService.selectPokemonFavoriteAdvice.next(pokemon);
             //this.pokemonService.selectPokemonDetailsAdvice.emit(pokemon);
-        })
+        });
+    }
+
+    private formControl() {
+        /*this.filterFormControl = new FormControl(
+            '', [Validators.minLength(2)]
+        );*/
+    }
+
+    private initFilter() {
+        this.filterPokemons = this.filterFormControl.valueChanges.pipe(
+            debounceTime(500),
+            startWith(''),
+            map(value => this._filter(value))
+        );
     }
 
     getPokemonDetail(pokemon: Pokemon): void {
         if (!pokemon.id) {
-            this.pokemonService.getPokemonDetailByName(pokemon.name).subscribe((poke: Pokemon) => {
+            this.pokemonService.getPokemonDetailByName(pokemon.name).subscribe((poke) => {
                 this.store.dispatch(PokemonsListActions.setPokemonDetails({pokemon: poke}));
                 this.pokemonService.selectPokemonDetailsAdvice.emit(poke);
             });
@@ -114,11 +119,19 @@ export class PokemonsComponent implements OnInit {
         }
     }
 
-    applyFilter(event: Event) {
-        //if (this.formFilter.valid) {
-        if (this.filterFormControl.valid) {
-            const filterValue = (event.target as HTMLInputElement).value;
-            this.dataSource.filter = filterValue.trim().toLowerCase();
-        }
+    imputFilterEventListen(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.applyFilter(filterValue);
+    }
+
+    applyFilter(value: string) {
+        if (this.filterFormControl.valid)
+            this.dataSource.filter = value.trim().toLowerCase();
+    }
+
+    private _filter(val: string): string[] {
+        const formatVal = val.toLowerCase();
+        return this.pokemons.map(pokemon => pokemon.name.toLowerCase())
+            .filter(pokemon => pokemon.toLowerCase().indexOf(formatVal) === 0);
     }
 }

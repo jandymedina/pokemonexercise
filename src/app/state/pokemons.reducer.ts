@@ -1,4 +1,4 @@
-import {Pokemon} from "../models/pokemon.model";
+import { Pokemon} from "../models/pokemon.model";
 import {createReducer, on} from "@ngrx/store";
 import {PokemonsListActions} from '.';
 
@@ -24,9 +24,13 @@ export const pokemonsReducer = createReducer(
       (action.pokemon.id && pokemon.name === action.pokemon.name) ?
         {
           ...pokemon,
-          id: action.pokemon.id, base_experience: action.pokemon.base_experience, height: action.pokemon.height,
-          weight: action.pokemon.weight, abilities: action.pokemon.abilities, order: action.pokemon.order,
-          sprites: action.pokemon.sprites, types: action.pokemon.types
+            id: action.pokemon.id,
+            base_experience: action.pokemon.base_experience,
+            height: action.pokemon.height,
+            weight: action.pokemon.weight,
+            sprites: action.pokemon.sprites,
+            abilities: action.pokemon.abilities,
+            types: action.pokemon.types
         } : pokemon
     )
   })),

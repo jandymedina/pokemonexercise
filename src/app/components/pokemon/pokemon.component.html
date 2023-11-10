@@ -1,33 +1,45 @@
-<ng-container *ngIf="pokemon">
-    <mat-card class="pokemon-card">
+<ng-container *ngIf="pokemon!.id">
+    <mat-card class="pokemon-card bg-{{pokemon!.types.length ? pokemon!.types[0].type.name : 'unknown'}}">
+
         <mat-card-header>
-            <div mat-card-avatar class="pokemon-header-image"
-                 [ngStyle]="{'background-image': 'url(' +pokemon.sprites!.front_default+ ')'}"></div>
-            <mat-card-title>{{pokemon.name}}</mat-card-title>
+            <mat-card-title>
+                {{pokemon!.name | capitalLetter}}
+            </mat-card-title>
+
             <mat-card-subtitle>
-                <ng-container *ngFor="let typep of pokemon.types; index as i;">
-                    <ng-container *ngIf="i == 0">{{typep.type.name}}</ng-container>
-                    <ng-container *ngIf="i > 0">, {{typep.type.name}}</ng-container>
-                </ng-container>
+                <mat-chip-list>
+                    <ng-container *ngFor="let typep of pokemon!.abilities; index as i;">
+                        <mat-chip
+                                class="border-type bg-{{pokemon!.types.length ? pokemon!.types[0].type.name : 'unknown'}}">
+                            {{typep.ability.name|capitalLetter}}
+                        </mat-chip>
+                    </ng-container>
+                </mat-chip-list>
             </mat-card-subtitle>
+
         </mat-card-header>
-        <img mat-card-image src="{{pokemon.sprites!.front_default}}" height="177px" alt="Imagen del Pokemon">
-        <mat-card-content>
-            <p>
-                Detalles del pokemon
-            </p>
-        </mat-card-content>
-        <mat-card-actions>
-            <button *ngIf="pokemon.favorite" mat-icon-button color="accent"
-                    aria-label="Example icon-button with a heart icon">
-                <mat-icon>favorite</mat-icon>
-            </button>
 
-            <button *ngIf="!pokemon.favorite" mat-icon-button disabled
-                    aria-label="Example icon-button with a heart icon">
-                <mat-icon>favorite</mat-icon>
-            </button>
+        <mat-list>
+            <mat-list-item>
+                <span>Experiencia</span>
+                <span class="atributes-value-spacer"></span>
+                <span>{{pokemon!.base_experience}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <span>Alto</span>
+                <span class="atributes-value-spacer"></span>
+                <span>{{pokemon!.height}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <span>Peso</span>
+                <span class="atributes-value-spacer"></span>
+                <span>{{pokemon!.weight}}</span>
+            </mat-list-item>
+        </mat-list>
 
-        </mat-card-actions>
+        <img mat-card-image src="{{pokemon!.sprites!.front_default}}" height="177px" alt=" ">
+
     </mat-card>
 </ng-container>
