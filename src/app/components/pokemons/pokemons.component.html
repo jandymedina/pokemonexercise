@@ -2,7 +2,7 @@
   <form class="mat-elevation-z8">
     <mat-form-field appearance="standard">
       <mat-label>Filtro de Pokemons</mat-label>
-      <input type="text" matInput
+      <input type="text" matInput onlyLeter
              (keyup)="imputFilterEventListen($event)"
              [formControl]="filterFormControl"
              [errorStateMatcher]="matcher"
@@ -48,14 +48,17 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getPokemonDetail(row)"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getPokemonDetail(row)">
+        <div style="border-bottom: #7AC74C">
+
+        </div>
+      </tr>
     </table>
   </div>
 
-  <mat-paginator [pageSizeOptions]="pageSizeOptions"
+  <mat-paginator [pageSizeOptions]="pageSizeOptions" (page)="OnPageChange($event)"
                  showFirstLastButtons
                  aria-label="Select page of periodic elements">
   </mat-paginator>
 
 </div>
-

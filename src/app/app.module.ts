@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { StartCharCounterPipe } from './pipes/start-char-counter.pipe';
 import { ResumeComponent } from './components/resume/resume.component';
 import { CapitalLetterPipe } from './pipes/capital-letter.pipe';
+import { OnlyLeterDirective } from './diretives/only-leter.directive';
 
 
 
@@ -33,7 +34,8 @@ import { CapitalLetterPipe } from './pipes/capital-letter.pipe';
     MainComponent,
     StartCharCounterPipe,
     CapitalLetterPipe,
-    ResumeComponent
+    ResumeComponent,
+    OnlyLeterDirective
   ],
   imports: [
     BrowserModule,

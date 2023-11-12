@@ -14,6 +14,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatListModule} from '@angular/material/list';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {MatListModule} from '@angular/material/list';
     MatAutocompleteModule,
     MatToolbarModule,
     MatChipsModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
   ],
   exports: [
     MatTableModule,
@@ -46,7 +48,8 @@ import {MatListModule} from '@angular/material/list';
     MatAutocompleteModule,
     MatToolbarModule,
     MatChipsModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule {
