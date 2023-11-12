@@ -135,8 +135,4 @@ export class PokemonsComponent implements OnInit {
     return this.pokemons.map(pokemon => pokemon.name.toLowerCase())
       .filter(pokemon => pokemon.toLowerCase().indexOf(formatVal) === 0);
   }
-
-  OnPageChange(event:PageEvent) {
-    console.log(event)
-  }
 }
