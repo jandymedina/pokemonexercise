@@ -3,11 +3,14 @@
   font-size: 12px;
 }
 
+.grid-container{
+  padding-top: 120px;
+}
+
 .grid-container > * {
   /*box-shadow: -1px 1px 7px 0 rgba(0, 0, 0, 0.75);
   border-radius: 4px;*/
   padding: 10px;
-  text-align: center;
 }
 
 .pokemon-list {
@@ -39,6 +42,6 @@
     gap: 10px;
     grid-template:
     "listado detalle" auto
-    "resumen resumen" auto / auto 400px;
+    "resumen resumen" auto / auto 300px;
   }
 }

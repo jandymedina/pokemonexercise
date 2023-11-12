@@ -1,0 +1,9 @@
+.favorite-pokemon-dialog{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.favorite-pokemon-dialog img{
+  width: 200px;
+}

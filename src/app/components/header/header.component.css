@@ -1,95 +1,124 @@
+.header-main {
+  padding-bottom: 5px;
+}
+
+.container-img-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.container-img-logo img {
+  width: 250px;
+}
+
+.favorite-pokemon {
+  position: relative;
+  float: left;
+  margin-top: -145px;
+  margin-left: calc(60%);
+  display: flex;
+  justify-content: center;
+}
+
+.favorite-pokemon img {
+  cursor: pointer;
+  max-height: 200px;
+  height: 200px;
+}
+
+
 .bg-normal {
-    background-color: #A8A77A;
-    color: #fff;
+  background-color: #A8A77A;
+  color: #fff;
 }
 
 .bg-fire {
-    background-color: #EE8130;
-    color: #fff;
+  background-color: #EE8130;
+  color: #fff;
 }
 
 .bg-water {
-    background-color: #6390F0;
-    color: #fff;
+  background-color: #6390F0;
+  color: #fff;
 }
 
 .bg-electric {
-    background-color: #F7D02C;
-    color: #fff;
+  background-color: #F7D02C;
+  color: #fff;
 }
 
 .bg-grass {
-    background-color: #7AC74C;
-    color: #fff;
+  background-color: #7AC74C;
+  color: #fff;
 }
 
 .bg-ice {
-    background-color: #96D9D6;
-    color: #fff;
+  background-color: #96D9D6;
+  color: #fff;
 }
 
 .bg-fighting {
-    background-color: #C22E28;
-    color: #fff;
+  background-color: #C22E28;
+  color: #fff;
 }
 
 .bg-poison {
-    background-color: #A33EA1;
-    color: #fff;
+  background-color: #A33EA1;
+  color: #fff;
 }
 
 .bg-ground {
-    background-color: #E2BF65;
-    color: #fff;
+  background-color: #E2BF65;
+  color: #fff;
 }
 
 .bg-flying {
-    background-color: #A98FF3;
-    color: #fff;
+  background-color: #A98FF3;
+  color: #fff;
 }
 
 .bg-psychic {
-    background-color: #F95587;
-    color: #fff;
+  background-color: #F95587;
+  color: #fff;
 }
 
 .bg-bug {
-    background-color: #A6B91A;
-    color: #fff;
+  background-color: #A6B91A;
+  color: #fff;
 }
 
 .bg-rock {
-    background-color: #B6A136;
-    color: #fff;
+  background-color: #B6A136;
+  color: #fff;
 }
 
 .bg-ghost, .bg-shadow {
-    background-color: #735797;
-    color: #fff;
+  background-color: #735797;
+  color: #fff;
 }
 
 .bg-dragon {
-    background-color: #6F35FC;
-    color: #fff;
+  background-color: #6F35FC;
+  color: #fff;
 }
 
 .bg-dark {
-    background-color: #705746;
-    color: #fff;
+  background-color: #705746;
+  color: #fff;
 }
 
 .bg-steel {
-    background-color: #B7B7CE;
-    color: #fff;
+  background-color: #B7B7CE;
+  color: #fff;
 }
 
 .bg-fairy {
-    background-color: #D685AD;
-    color: #fff;
+  background-color: #D685AD;
+  color: #fff;
 }
 
 .bg-unknown {
-    background-color: #f5f5f5;
-    color: #000;
+  background-color: #f5f5f5;
+  color: #000;
 }
 

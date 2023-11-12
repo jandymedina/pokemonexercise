@@ -1,5 +1,5 @@
 .pokemon-card {
-    max-width: 350px;
+    max-width: 300px;
     color: white;
     display: grid;
 }
@@ -34,6 +34,14 @@
 .mat-card-image {
     justify-self: center;
     width: auto;
+}
+
+.container-img-card {
+  display: flex;
+  justify-content: center;
+}
+.container-img-card img{
+  width: 290px;
 }
 
 .bg-normal {

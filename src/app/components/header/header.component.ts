@@ -5,47 +5,49 @@ import {PokemonService} from "../../services/pokemon.service";
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-    pokemon$: BehaviorSubject<Pokemon>;
-    pokemon!: Pokemon;
-    constructor(
-        private pokemonService: PokemonService,
-        private dialog: MatDialog
-    ) {
-        this.pokemon$ = this.pokemonService.selectPokemonFavoriteAdvice;
-    }
+  pokemon$: BehaviorSubject<Pokemon>;
+  pokemon!: Pokemon;
 
-    ngOnInit(): void {
-        this.pokemon$.subscribe(pokemon => {
-            this.pokemon = pokemon;
-        })
-    }
+  constructor(
+    private pokemonService: PokemonService,
+    private dialog: MatDialog
+  ) {
+    this.pokemon$ = this.pokemonService.selectPokemonFavoriteAdvice;
+  }
 
-    openDialog() {
-        this.dialog.open(PokemonDialogComponent, {
-            width: '370px',
-            data: this.pokemon
-        });
-    }
+  ngOnInit(): void {
+    this.pokemon$.subscribe(pokemon => {
+      this.pokemon = pokemon;
+    })
+  }
+
+  openDialog() {
+    this.dialog.open(PokemonDialogComponent, {
+      width: '350px',
+      data: this.pokemon
+    });
+  }
 
 }
 
 @Component({
-    selector: 'app-pokemon-dialog',
-    templateUrl: './pokemon.dialog.html',
+  selector: 'app-pokemon-dialog',
+  templateUrl: './pokemon.dialog.html',
+  styleUrls: ['./pokemon.dialog.css']
 })
 export class PokemonDialogComponent {
-    constructor(
-        public dialogRef: MatDialogRef<PokemonDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: Pokemon
-    ) {
-    }
+  constructor(
+    public dialogRef: MatDialogRef<PokemonDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Pokemon
+  ) {
+  }
 
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

@@ -1,1 +1,6 @@
 
+.header-main {
+  position: fixed;
+  z-index: 100;
+  width: -moz-available;
+}

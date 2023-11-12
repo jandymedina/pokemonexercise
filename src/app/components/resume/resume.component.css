@@ -1,3 +1,8 @@
+.mat-toolbar-row{
+  display: flex;
+  justify-content: center;
+}
+
 .table-container {
     position: relative;
     min-height: 200px;
@@ -11,4 +16,14 @@ table {
 .mat-header-cell {
     text-align: center;
     font-size: large;
+  background-color: #f5f5f5;
 }
+
+tr.mat-row:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+td.mat-cell{
+  text-align: center;
+}
+

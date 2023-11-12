@@ -1,59 +1,61 @@
-<form>
+<div class="filter-pokemon">
+  <form class="mat-elevation-z8">
     <mat-form-field appearance="standard">
-        <mat-label>Filtro de Pokemons</mat-label>
-        <input type="text" matInput
-               (keyup)="imputFilterEventListen($event)"
-               [formControl]="filterFormControl"
-               [errorStateMatcher]="matcher"
-               [matAutocomplete]="auto"
-               placeholder="Escribir aquí..."
-        >
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filterPokemons | async" value="{{option}}" (click)="applyFilter(option)" >
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-        <!--mat-error *ngIf="filterFormControl.hasError('minlength')">
-            El filtro debe tener {{ filterFormControl.errors?.['minlength'].requiredLength }} o más caracteres.
-        </mat-error-->
+      <mat-label>Filtro de Pokemons</mat-label>
+      <input type="text" matInput
+             (keyup)="imputFilterEventListen($event)"
+             [formControl]="filterFormControl"
+             [errorStateMatcher]="matcher"
+             [matAutocomplete]="auto"
+             placeholder="Escribir aquí..."
+      >
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filterPokemons | async" value="{{option}}" (click)="applyFilter(option)">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+      <!--mat-error *ngIf="filterFormControl.hasError('minlength')">
+          El filtro debe tener {{ filterFormControl.errors?.['minlength'].requiredLength }} o más caracteres.
+      </mat-error-->
 
     </mat-form-field>
-</form>
+  </form>
+</div>
 
 <div class="paginator-container mat-elevation-z8">
 
-    <div class="table-container">
+  <div class="table-container ">
 
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef>Nombre</th>
-                <td mat-cell *matCellDef="let element"> {{element.name|capitalLetter}} </td>
-            </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element"> {{element.name|capitalLetter}} </td>
+      </ng-container>
 
-            <ng-container matColumnDef="favorite">
-                <th mat-header-cell *matHeaderCellDef aria-label="row actions">Favorito</th>
-                <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button class="btn-favorite" color="accent" *ngIf="element.favorite"
-                            (click)="addFavorite(element); $event.stopPropagation()">
-                        <mat-icon>favorite</mat-icon>
-                    </button>
-                    <button mat-icon-button class="btn-favorite negativo" *ngIf="!element.favorite"
-                            (click)="addFavorite(element); $event.stopPropagation()">
-                        <mat-icon>favorite</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
+      <ng-container matColumnDef="favorite">
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions">Favorito</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button class="btn-favorite" color="accent" *ngIf="element.favorite"
+                  (click)="addFavorite(element); $event.stopPropagation()">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button mat-icon-button class="btn-favorite negativo" *ngIf="!element.favorite"
+                  (click)="addFavorite(element); $event.stopPropagation()">
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getPokemonDetail(row)"></tr>
-        </table>
-    </div>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getPokemonDetail(row)"></tr>
+    </table>
+  </div>
 
-    <mat-paginator [pageSizeOptions]="pageSizeOptions"
-                   showFirstLastButtons
-                   aria-label="Select page of periodic elements">
-    </mat-paginator>
+  <mat-paginator [pageSizeOptions]="pageSizeOptions"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
 
 </div>
 
